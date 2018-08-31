@@ -144,7 +144,7 @@ resource "aws_security_group" "web_inbound_sg" {
 }
 
 
-resource "aws_alb" "alb_open_jobs" {
+resource "aws_alb" "alb_openjobs" {
   name = "${var.environment}-alb-openjobs"
   subnets = ["${var.public_subnet_ids}"]
 
@@ -158,7 +158,7 @@ resource "aws_alb" "alb_open_jobs" {
 }
 
 resource "aws_alb_listener" "openjobs" {
-  load_balancer_arn = "${aws_alb.alb_open_jobs.arn}"
+  load_balancer_arn = "${aws_alb.alb_openjobs.arn}"
   port = "80"
   protocol = "HTTP"
   depends_on = ["aws_alb_target_group.alb_target_group"]
