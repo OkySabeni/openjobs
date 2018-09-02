@@ -8,7 +8,6 @@ provider "aws" {
   region = "${var.region}"
 }
 
-// TODO: add production key
 resource "aws_key_pair" "key" {
   key_name = "production_key"
   public_key = "${file("${production_key.pub}")}"
@@ -37,13 +36,12 @@ module "rds" {
   instance_class = "db.t2.micro"
 }
 
-// TODO: Change the repository name
 module "ecs" {
   source = "./modules/ecs"
   environment = "production"
   vpc_id = "${module.networking.vpc_id}"
   availability_zones = "${local.production_availability_zones}"
-  repository_name = "openjobs/production"
+  repository_name = "okysabeni/openjobs"
   subnet_ids = "${module.networking.private_subnet_ids}"
   public_subnet_ids = "${module.networking.public_subnet_ids}"
   security_group_ids = [
