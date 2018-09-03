@@ -12,7 +12,7 @@ resource "aws_iam_role" "codepipeline_role" {
 // policies
 
 data "template_file" "codepipeline_policy" {
-  template = "${file("${path.module}/policies/codepipineline.json")}"
+  template = "${file("${path.module}/policies/codepipeline.json")}"
 
   vars {
     aws_s3_bucket_arn = "${aws_s3_bucket.source.arn}"
@@ -106,12 +106,12 @@ resource "aws_codepipeline" "pipeline" {
       provider = "GitHub"
       version = "1"
       output_artifacts = ["source"]
-    }
 
-    configuration {
-      Owner = "oky"
-      Repo = "openjobs_experiment"
-      Branch = "master"
+      configuration {
+        Owner = "oky"
+        Repo = "openjobs_experiment"
+        Branch = "master"
+      }
     }
   }
 

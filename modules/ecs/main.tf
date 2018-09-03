@@ -105,7 +105,7 @@ resource "aws_alb_target_group" "alb_target_group" {
   vpc_id = "${var.vpc_id}"
   target_type = "ip"
 
-  lifecyle {
+  lifecycle {
     create_before_destroy = true
   }
 }
@@ -164,7 +164,7 @@ resource "aws_alb_listener" "openjobs" {
   depends_on = ["aws_alb_target_group.alb_target_group"]
 
   default_action {
-    target_group_arn = "${aws_alb_target_group}"
+    target_group_arn = "${aws_alb_target_group.alb_target_group.arn}"
     type = "forward"
   }
 }
@@ -323,7 +323,7 @@ resource "aws_appautoscaling_policy" "up" {
   step_scaling_policy_configuration {
     adjustment_type = "ChangeInCapacity"
     cooldown = 60
-    metric_aggrgation_type = "Maximum"
+    metric_aggregation_type = "Maximum"
 
     step_adjustment {
       metric_interval_lower_bound = 0
@@ -343,7 +343,7 @@ resource "aws_appautoscaling_policy" "down" {
   step_scaling_policy_configuration {
     adjustment_type = "ChangeInCapacity"
     cooldown = 60
-    metric_aggrgation_type = "Maximum"
+    metric_aggregation_type = "Maximum"
 
     step_adjustment {
       metric_interval_lower_bound = 0
