@@ -213,7 +213,7 @@ resource "aws_iam_role" "ecs_execution_role" {
   name = "ecs_task_execution_role"
 
   // ??? why is this not a data statement ???
-  assume_role_policy = "${file("${path.module}/policies/ecs-execution-role-policy.json")}"
+  assume_role_policy = "${file("${path.module}/policies/ecs-task-execution-role.json")}"
 }
 
 resource "aws_iam_role_policy" "ecs_execution_role_policy" {
@@ -261,6 +261,7 @@ resource "aws_security_group" "ecs_service" {
 
 data "aws_ecs_task_definition" "web" {
   task_definition = "${aws_ecs_task_definition.web.family}"
+  depends_on = ["aws_ecs_task_definition.web"]
 }
 
 resource "aws_ecs_service" "web" {
