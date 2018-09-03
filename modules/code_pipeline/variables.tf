@@ -6,7 +6,7 @@ variable "region" {
   description = "The region to use"
 }
 
-variable "ecs_sluter_name" {
+variable "ecs_cluster_name" {
   description = "The cluster that we will deploy"
 }
 

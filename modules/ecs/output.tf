@@ -15,7 +15,7 @@ output "alb_dns_name" {
 }
 
 output "alb_zone_id" {
-  value = "${aws_alb.alb_openjobs}"
+  value = "${aws_alb.alb_openjobs.zone_id}"
 }
 
 output "security_group_id" {

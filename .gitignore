@@ -24,4 +24,5 @@
 # RubyMine
 .idea/
 
+.terraform
 terraform.tfvars

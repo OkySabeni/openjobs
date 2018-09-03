@@ -16,7 +16,7 @@ variable "security_group_ids" {
   description = "The SGs to use"
 }
 
-variable "subnet_ids" {
+variable "subnets_ids" {
   type = "list"
   description = "the private subnets to use"
 }
@@ -36,6 +36,10 @@ variable "database_username" {
 
 variable "database_password" {
   description = "the database password"
+}
+
+variable "database_name" {
+  description = "the database that the app will use"
 }
 
 variable "repository_name" {

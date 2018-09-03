@@ -1,5 +1,5 @@
 module "code_pipeline" {
-  source = "./module/code_pipeline"
+  source = "./modules/code_pipeline"
   repository_url = "${module.ecs.repository_url}"
   region = "${var.region}"
   ecs_service_name = "${module.ecs.service_name}"

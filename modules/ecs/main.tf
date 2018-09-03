@@ -276,7 +276,7 @@ resource "aws_ecs_service" "web" {
 
   network_configuration {
     security_groups = ["${var.security_group_ids}", "${aws_security_group.ecs_service.id}"]
-    subnets = ["${var.subnets_id}"]
+    subnets = ["${var.subnets_ids}"]
   }
 
   load_balancer {
@@ -314,7 +314,7 @@ resource "aws_appautoscaling_target" "target" {
   max_capacity = 4
 }
 
-resource "aws_appautoscaling_target" "up" {
+resource "aws_appautoscaling_policy" "up" {
   name = "${var.environment}_scale_up"
   service_namespace = "ecs"
   resource_id = "service/${aws_ecs_cluster.cluster.name}/${aws_ecs_service.web.name}"
@@ -337,7 +337,7 @@ resource "aws_appautoscaling_target" "up" {
 resource "aws_appautoscaling_policy" "down" {
   name = "${var.environment}_scale_down"
   service_namespace = "ecs"
-  resource_id = "service/${aws_ecs_cluster.name}/${aws_ecs_service.web.name}"
+  resource_id = "service/${aws_ecs_cluster.cluster.name}/${aws_ecs_service.web.name}"
   scalable_dimension = "ecs:Service:DesiredCount"
 
   step_scaling_policy_configuration {

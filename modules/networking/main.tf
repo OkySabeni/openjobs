@@ -136,13 +136,13 @@ resource "aws_route" "private_nat_gateway" {
 resource "aws_route_table_association" "public" {
   route_table_id = "${aws_route_table.public.id}"
   count = "${length(var.public_subnets_cidr)}"
-  subnet_id = "${element(aws_subnet.public_subnet.*.id, index.count)}"
+  subnet_id = "${element(aws_subnet.public_subnet.*.id, count.index)}"
 }
 
 resource "aws_route_table_association" "private" {
   route_table_id = "${aws_route_table.private.id}"
   count = "${length(var.private_subnets_cidr)}"
-  subnet_id = "${element(aws_subnet.private_subnet.*.id, index.count)}"
+  subnet_id = "${element(aws_subnet.private_subnet.*.id, count.index)}"
 }
 
 
