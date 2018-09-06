@@ -70,7 +70,9 @@
     },
     {
       "Effect": "Allow",
-      "Resource": ["arn:aws:iam::*role/ecsAutoScaleRole*"],
+      "Resource": [
+        "arn:aws:iam::*:role/ecsAutoscaleRole*"
+      ],
       "Action": "iam:PassRole",
       "Condition": {
         "StringLike": {
