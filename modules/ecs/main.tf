@@ -309,7 +309,7 @@ resource "aws_iam_role_policy" "ecs_autoscale_role_policy" {
 resource "aws_appautoscaling_target" "target" {
   service_namespace = "ecs"
   resource_id = "service/${aws_ecs_cluster.cluster.name}/${aws_ecs_service.web.name}"
-  scalable_dimension = "ecs:Service:DesiredCount"
+  scalable_dimension = "ecs:service:DesiredCount"
   role_arn = "${aws_iam_role.ecs_autoscale_role.arn}"
   min_capacity = 2
   max_capacity = 4
@@ -319,7 +319,7 @@ resource "aws_appautoscaling_policy" "up" {
   name = "${var.environment}_scale_up"
   service_namespace = "ecs"
   resource_id = "service/${aws_ecs_cluster.cluster.name}/${aws_ecs_service.web.name}"
-  scalable_dimension = "ecs:Service:DesiredCount"
+  scalable_dimension = "ecs:service:DesiredCount"
 
   step_scaling_policy_configuration {
     adjustment_type = "ChangeInCapacity"
@@ -339,7 +339,7 @@ resource "aws_appautoscaling_policy" "down" {
   name = "${var.environment}_scale_down"
   service_namespace = "ecs"
   resource_id = "service/${aws_ecs_cluster.cluster.name}/${aws_ecs_service.web.name}"
-  scalable_dimension = "ecs:Service:DesiredCount"
+  scalable_dimension = "ecs:service:DesiredCount"
 
   step_scaling_policy_configuration {
     adjustment_type = "ChangeInCapacity"
