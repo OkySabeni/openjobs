@@ -8,7 +8,7 @@
       "logDriver": "awslogs",
       "options": {
         "awslogs-group": "${log_group}",
-        "aswslogs-region": "us-east-1",
+        "awslogs-region": "us-east-1",
         "awslogs-stream-prefix": "db_migrate"
       }
     },
@@ -27,7 +27,7 @@
       },
       {
         "name": "RAILS_LOG_TO_STDOUT",
-        "value": true
+        "value": "true"
       }
     ]
   }

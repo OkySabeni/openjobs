@@ -74,7 +74,7 @@ data "template_file" "db_migrate_task" {
   vars {
     image = "${aws_ecr_repository.openjobs_app.repository_url}"
     secret_key_base = "${var.secret_key_base}"
-    database_url = "postgres://${var.database_username}:${var.database_password}@${var.database_endpoint}:5432/${var.database_name}?encoding=utf8&pool=40"
+    database_url = "postgresql://${var.database_username}:${var.database_password}@${var.database_endpoint}:5432/${var.database_name}?encoding=utf8&pool=40"
     log_group = "openjobs" // ??? why is this different than the def for rails ???
   }
 }
