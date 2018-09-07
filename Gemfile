@@ -42,6 +42,9 @@ gem 'bugsnag'
 gem 'newrelic_rpm'
 gem 'rollbar'
 
+gem 'execjs'
+gem 'therubyracer', :platforms => :ruby
+
 group :development, :test do
   # Code analysis
   gem 'brakeman'
