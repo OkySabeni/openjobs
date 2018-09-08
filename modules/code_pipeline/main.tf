@@ -111,8 +111,16 @@ resource "aws_codepipeline" "pipeline" {
         Owner = "okysabeni"
         Repo = "openjobs"
         Branch = "master"
+        PollForSourceChanges = "true"
       }
     }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      "stage.0.action.0.configuration.OAuthToken",
+      "stage.0.action.0.configuration.%",
+    ]
   }
 
   stage {
