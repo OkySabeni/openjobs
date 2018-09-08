@@ -2,7 +2,6 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  url: <%= ENV['DATABASE_URL'] %>
 
 development:
   <<: *default
@@ -14,3 +13,6 @@ test:
 
 production:
   <<: *default
+  adapter: postgresql
+  timeout: 5000
+  url: postgresql://railsdeploy:railsdeploy@railsdeploy.cqvjraki2pnd.us-west-1.rds.amazonaws.com:5432/railsdeploy?encoding=utf8&pool=5
